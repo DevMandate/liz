@@ -21,7 +21,7 @@ const questions = [
     "When the whole of the ball crosses over the goal line or touch line and the referee has stopped play",
     "When play has been stopped by the referee",
     "Either way",
-    "C"
+    "B"
   ],
 
   // 3
@@ -91,7 +91,7 @@ const questions = [
     "Both the kicker and the goalkeeper are cautioned and the kick retaken",
     "The Goalkeeper is given a warning and the kick retaken. If he/she repeats the     same, the goalkeeper gets sent off (red card),",
     "The kick is recorded as missed and the kicker is cautioned (yellow card)",
-    "B"
+    "D"
   ],
 
   // 10
@@ -121,7 +121,7 @@ const questions = [
     "Yes so long as the players of the team taking the kick-off are in their own half of the field of play.",
     "No. for every kick-off all players including the player taking the kick-off, must be in their own half of the field of play.",
     "Yes. For every kick-off all players, except the players of the scoring team, must be in their own half of the field of play but.",
-    "B"
+    "C"
   ],
 
   // 13
@@ -141,7 +141,7 @@ const questions = [
     "Disallow the goal if the ball didn’t touch at least two players. Play is restarted with a goal kick or a corner kick.",
     "Disallow the goal if the ball didn’t touch at least two players. Retake the dropped ball.",
     "Disallow the goal if the ball didn’t touch at least two players. Caution the player and play is restarted with a goal kick or a corner kick.",
-    "C"
+    "B"
   ],
 
   // 15
@@ -161,7 +161,7 @@ const questions = [
     "The referee cannot caution, or show a yellow to the offending player, as the offence has occurred before the referee has entered the field of play at the start of the match. The incident is reported to the appropriate disciplinary authorities.",
     "The referee cautions, or shows a yellow card to the offending player, as the referee has authority before entering the field of play at the start of the match. No need to report the incident.",
     "None of the answers above is correct.",
-    "A"
+    "B"
   ],
 
   // 17
@@ -181,7 +181,7 @@ const questions = [
     "The referee stops play and restarts with a dropped ball for the defending team goalkeeper in their penalty area.",
     "The dog is an ‘outside agent’ so the referee stops play and restarts with a dropped ball for any defending team player in the field of play.",
     "B and C could be correct",
-    "D"
+    "B"
   ],
 
   // 19
@@ -191,7 +191,7 @@ const questions = [
     "The referee stops play. Cautions both players and restart play with an indirect free kick where the ball was.",
     "The referee allows play but caution both players during the next stoppage and restart play accordingly. The matter is reported after the match to the appropriate authorities.",
     "None of the answers above is correct.",
-    "C"
+    "B"
   ],
 
   // 20
@@ -221,7 +221,7 @@ const questions = [
     "Indirect free kick and yellow card to the goalkeeper",
     "Indirect free kick and yellow card to the teammate of the goalkeeper",
     "Play on",
-    "C"
+    "B"
   ],
 
   // 23
@@ -248,7 +248,7 @@ const questions = [
   [
     "Name laws of the game in order from law 1 to 8…",
     "", "", "", "",  
-    "TEXT" // use TEXT instead of A/B/C/D
+    "TEXT" 
   ]
   
 
@@ -262,8 +262,13 @@ const questions = [
 let pos = 0;
 let answers = [];
 let correctCount = 0;
-let timerInterval = null;
-let totalTime = 1200; // 20 minutes (20*60)
+
+let timerInterval = null;           // 20-min global timer
+let totalTime = 1200;
+
+let questionTimerInterval = null;   // 45-sec per question timer
+let questionTime = 45;
+let fullName = "";  // store user's name
 
 
 // -------------------------------------------------
@@ -277,6 +282,8 @@ const questionBox = document.getElementById("questionBox");
 const progressEl = document.getElementById("progress");
 const timeLeftEl = document.getElementById("timeLeft");
 
+const questionTimerEl = document.getElementById("questionTimer"); // <<< ADD TO HTML
+
 const startBtn = document.getElementById("startBtn");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -288,11 +295,18 @@ const downloadHtmlBtn2 = document.getElementById("downloadHtmlBtn2");
 const finalScore = document.getElementById("finalScore");
 const finalMessage = document.getElementById("finalMessage");
 
-
 // -------------------------------------------------
 // START QUIZ
 // -------------------------------------------------
 function startQuiz() {
+   const nameInput = document.getElementById("fullName").value.trim();
+
+    if (!nameInput) {
+        alert("Please enter your full name to start the test.");
+        return;
+    }
+
+  fullName = nameInput;
   pos = 0;
   correctCount = 0;
   answers = new Array(questions.length).fill(null);
@@ -301,165 +315,238 @@ function startQuiz() {
   show(quizScreen);
 
   totalTime = 1200;
-  startTimer();
-  renderQuestion();
+  startTimer();        // GLOBAL TIMER (20 minutes)
+  renderQuestion();    // FIRST QUESTION
 }
 
-
 // -------------------------------------------------
-// TIMER
+// GLOBAL TIMER (20 minutes)
 // -------------------------------------------------
 function startTimer() {
-  updateTimeDisplay();
+    updateTimeDisplay();
+  
+    timerInterval = setInterval(() => {
+      totalTime--;
+      if (totalTime <= 0) {
+        clearInterval(timerInterval);
+        submitQuiz();
+      } else {
+        updateTimeDisplay();
+      }
+    }, 1000);
+  }
+  
+  function updateTimeDisplay() {
+    const min = Math.floor(totalTime / 60);
+    const sec = totalTime % 60;
+  
+    timeLeftEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+  
+    const bar = document.getElementById("timeBar");
+    const percent = (totalTime / 1200) * 100;
+  
+    bar.style.width = percent + "%";
+    bar.style.background = percent > 50 ? "#718a02ff" :
+                           percent > 20 ? "#ffd700" :
+                                          "#ff4f4f";
+  }
 
-  timerInterval = setInterval(() => {
-    totalTime--;
-    if (totalTime <= 0) {
-      clearInterval(timerInterval);
-      submitQuiz();
-    } else {
-      updateTimeDisplay();
+// -------------------------------------------------
+// PER-QUESTION TIMER (45 seconds)
+// -------------------------------------------------
+function startQuestionTimer() {
+  clearInterval(questionTimerInterval);
+  questionTime = 45;
+
+  updateQuestionTimerDisplay();
+
+  questionTimerInterval = setInterval(() => {
+    questionTime--;
+
+    updateQuestionTimerDisplay();
+
+    if (questionTime <= 0) {
+      clearInterval(questionTimerInterval);
+      lockQuestion();
     }
+
   }, 1000);
 }
 
-function updateTimeDisplay() {
-  const min = Math.floor(totalTime / 60);
-  const sec = totalTime % 60;
-
-  timeLeftEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
-
-  const bar = document.getElementById("timeBar");
-  const percent = (totalTime / 1200) * 100;
-
-  bar.style.width = percent + "%";
-  bar.style.background = percent > 50 ? "#718a02ff" :
-                         percent > 20 ? "#ffd700" :
-                                        "#ff4f4f";
+function updateQuestionTimerDisplay() {
+  if (questionTimerEl) {
+    questionTimerEl.textContent = `Time left: ${questionTime}s`;
+  }
 }
 
+// -------------------------------------------------
+// LOCK QUESTION WHEN TIME EXPIRES
+// -------------------------------------------------
+function lockQuestion() {
+  saveCurrentAnswer();          // save whatever they had
+
+  // disable choices
+  questionBox.querySelectorAll("input").forEach(i => i.disabled = true);
+  questionBox.querySelectorAll(".choice").forEach(c => c.classList.add("disabled"));
+
+  prevBtn.style.visibility = "hidden";  // cannot go back
+
+  // If last question → auto-submit
+  if (pos === questions.length - 1) {
+    submitQuiz();
+    return;
+  }
+
+  // Move to next question in 1 sec
+  setTimeout(() => {
+    pos++;
+    renderQuestion();
+  }, 800);
+}
 
 // -------------------------------------------------
-// RENDER QUESTION
+// RENDER QUESTION + START QUESTION TIMER
 // -------------------------------------------------
 function renderQuestion() {
-    const q = questions[pos];
-    const correct = q[5]; // either A/B/C/D or TEXT
-  
-    progressEl.textContent = `Question ${pos + 1} of ${questions.length}`;
-  
-    let html = `<h3>${q[0]}</h3>`;
-  
-    // ---------------------------
-    // TEXT INPUT QUESTION (Q25)
-    // ---------------------------
-    if (correct === "TEXT") {
-      const savedText = answers[pos]?.text || "";
-  
-      html += `
-        <textarea id="textAnswer" placeholder="Enter all 8 laws in order..."
-          style="width:100%; height:160px; font-size:15px; padding:10px;">${savedText}</textarea>
-      `;
-  
-      questionBox.innerHTML = html;
-      updateNavButtons();
-      return;
-    }
-  
-    // ---------------------------
-    // MULTIPLE CHOICE QUESTIONS
-    // ---------------------------
-    html += `<div class="choices">`;
-    const labels = ["A", "B", "C", "D"];
-    const saved = answers[pos]?.selected || null;
-  
-    for (let i = 1; i <= 4; i++) {
-      const letter = labels[i - 1];
-      html += `
-        <label class="choice ${saved === letter ? "selected" : ""}">
-          <input type="radio" name="choices" value="${letter}" ${saved === letter ? "checked" : ""}>
-          <span>${letter}. ${q[i]}</span>
-        </label>
-      `;
-    }
-  
-    html += `</div>`;
+  clearInterval(questionTimerInterval);
+
+  const q = questions[pos];
+  const correct = q[5];
+
+  progressEl.textContent = `Question ${pos + 1} of ${questions.length}`;
+
+  let html = `<h3>${q[0]}</h3>`;
+
+  // TEXT QUESTION
+  if (correct === "TEXT") {
+    const savedText = answers[pos]?.text || "";
+
+    html += `
+      <textarea id="textAnswer"
+      style="width:100%; height:160px; font-size:15px; padding:10px;"
+      placeholder="Enter all 8 laws in order...">${savedText}</textarea>
+    `;
+
     questionBox.innerHTML = html;
-  
-    questionBox.querySelectorAll(".choice").forEach(c => {
-      c.addEventListener("click", () => {
-        questionBox.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
-        c.classList.add("selected");
-        c.querySelector("input").checked = true;
-      });
-    });
-  
+
+    // If this question was locked earlier (user answered it and pressed Next),
+    // disable inputs and add the disabled class for styling/UX.
+    if (answers[pos]?.locked) {
+    // disable radio inputs
+    questionBox.querySelectorAll("input[name='choices']").forEach(i => i.disabled = true);
+    // add disabled class to labels (matches your CSS)
+    questionBox.querySelectorAll(".choice").forEach(c => c.classList.add("disabled"));
+    }
+
     updateNavButtons();
+    startQuestionTimer();
+    return;
   }
+
+  // MULTIPLE CHOICE
+  html += `<div class="choices">`;
+  const labels = ["A", "B", "C", "D"];
+  const saved = answers[pos]?.selected;
+
+  for (let i = 1; i <= 4; i++) {
+    const letter = labels[i - 1];
+    html += `
+      <label class="choice ${saved === letter ? "selected" : ""}">
+        <input type="radio" name="choices" value="${letter}"
+        ${saved === letter ? "checked" : ""}>
+        <span>${letter}. ${q[i]}</span>
+      </label>
+    `;
+  }
+
+  html += `</div>`;
+
+  questionBox.innerHTML = html;
+
+  questionBox.querySelectorAll(".choice").forEach(c => {
+    c.addEventListener("click", () => {
+  
+      // Mark the selected option
+      questionBox.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+      c.classList.add("selected");
+      c.querySelector("input").checked = true;
+  
+      // Lock the question AFTER answering
+      questionBox.querySelectorAll("input").forEach(i => i.disabled = true);
+      questionBox.querySelectorAll(".choice").forEach(x => x.classList.add("disabled"));
+  
+      // Save answer
+      saveCurrentAnswer();
+  
+      // Hide previous button ONLY after answering
+      prevBtn.style.visibility = "hidden";
+  
+      // Do NOT move to next question automatically
+    });
+  });
   
 
+  updateNavButtons();
+  startQuestionTimer();
+}
 
 // -------------------------------------------------
 // SAVE CURRENT ANSWER
 // -------------------------------------------------
 function saveCurrentAnswer() {
-    const q = questions[pos];
-    const correct = q[5];
-  
-    // -------------------------
-    // TEXT ANSWER (Q25)
-    // -------------------------
-    if (correct === "TEXT") {
-      const txt = document.getElementById("textAnswer")?.value || "";
-  
-      answers[pos] = {
-        question: q[0],
-        text: txt,
-        selected: txt,
-        correctAnswer: "TEXT",
-        passed: txt.trim().length > 0 // mark as passed if they filled something
-      };
-  
-      return;
-    }
-  
-    // -------------------------
-    // MULTIPLE CHOICE ANSWER
-    // -------------------------
-    const radios = document.getElementsByName("choices");
-    let selected = null;
-  
-    for (const r of radios) {
-      if (r.checked) selected = r.value;
-    }
-  
+  const q = questions[pos];
+  const correct = q[5];
+
+  if (correct === "TEXT") {
+    const txt = document.getElementById("textAnswer")?.value || "";
+
     answers[pos] = {
       question: q[0],
-      options: {
-        A: q[1],
-        B: q[2],
-        C: q[3],
-        D: q[4]
-      },
-      selected: selected,
-      correctAnswer: correct,
-      passed: selected === correct
+      text: txt,
+      selected: txt,
+      correctAnswer: "TEXT",
+      passed: txt.trim().length > 0
     };
+    return;
   }
-  
 
+  const radios = document.getElementsByName("choices");
+  let selected = null;
+
+  for (const r of radios) {
+    if (r.checked) selected = r.value;
+  }
+
+  answers[pos] = {
+    question: q[0],
+    selected: selected,
+    correctAnswer: correct,
+    passed: selected === correct
+  };
+}
 
 // -------------------------------------------------
 // NAVIGATION
 // -------------------------------------------------
 function nextQuestion() {
-  saveCurrentAnswer();
-
-  if (pos < questions.length - 1) {
-    pos++;
-    renderQuestion();
+    // Save current answer for this question
+    saveCurrentAnswer();
+  
+    // mark current question as locked (so it cannot be changed later)
+    answers[pos] = answers[pos] || {};
+    answers[pos].locked = true;
+  
+    // Move forward
+    if (pos < questions.length - 1) {
+      pos++;
+      renderQuestion();
+  
+      // Once the user moves forward from a question, disable PREVIOUS navigation
+      // (hides Prev so they cannot return)
+      prevBtn.style.visibility = "hidden";
+    }
   }
-}
+  
 
 function prevQuestion() {
   saveCurrentAnswer();
@@ -481,12 +568,12 @@ function updateNavButtons() {
   submitBtn.style.display = pos === questions.length - 1 ? "inline-block" : "none";
 }
 
-
 // -------------------------------------------------
 // FINISH QUIZ
 // -------------------------------------------------
 function finishQuiz() {
   clearInterval(timerInterval);
+  clearInterval(questionTimerInterval);
 
   hide(quizScreen);
   show(resultScreen);
@@ -497,12 +584,13 @@ function finishQuiz() {
   finalMessage.textContent = "Test completed!";
 }
 
-
 // -------------------------------------------------
 // CSV DOWNLOAD
 // -------------------------------------------------
 function generateCsvContent() {
   const rows = [];
+  rows.push(["Full Name", fullName]);
+  rows.push([]);
   rows.push(["#", "Question", "Selected", "Correct", "Result"]);
 
   answers.forEach((r, i) => {
@@ -560,6 +648,7 @@ function generateHtmlReport() {
   </head>
   <body>
     <h1>MTC Referee Exam Report</h1>
+    <p><strong>Full Name:</strong> ${fullName}</p>
     <p><strong>Score:</strong> ${correctCount} / ${questions.length}</p>
 
     <table>

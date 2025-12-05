@@ -1,7 +1,7 @@
 # Referee Laws of the Game — MCQ Quiz
 
 A lightweight, fast, and mobile-friendly interactive quiz application built using **HTML**, **CSS**, and **JavaScript**.
-This project is designed for referee training and assessment, following the FKF Laws of the Game standards.
+This project is designed for referee training and assessment following FKF Laws of the Game standards.
 
 ---
 
@@ -9,41 +9,68 @@ This project is designed for referee training and assessment, following the FKF 
 
 ### 25 Multiple-Choice Questions
 
-Fully configurable through an array inside `script.js`.
+Fully configurable through the questions array inside `script.js`.
 
-### Smooth UI
+### Smooth, Professional UI
 
-Clean, professional typography and responsive layout that works on phones and desktop browsers.
+Clean typography and responsive design that works perfectly on both mobile and desktop.
 
-### Timer
+### Global Timer (20 Minutes)
 
-A 20-minute countdown that auto-submits when time ends.
+A 20-minute countdown runs for the entire test and auto-submits when it reaches zero.
 
-### Prevent skipping questions
+### Per-Question Timer (45 Seconds)
 
-Users cannot go to the next question until they select an answer.
+Each question has its own **45-second timer**.
+When it expires:
+
+* The question locks
+* User cannot go back
+* The quiz auto-moves to the next question
+
+### Prevent Skipping Questions
+
+A user **cannot go to the next question until they have selected an answer**.
+If unanswered:
+
+* **Next** button is hidden
+* **Previous** button stays visible
+
+### Controlled Navigation
+
+* When a user **answers**, choices lock
+* **Next** button appears
+* **Previous** button becomes hidden
+* Users must click **Next** manually (no auto-jumping)
 
 ### Progress Indicator
 
-Shows **“Question X of 25”** for easy navigation.
+Shows **“Question X of 25”** for easy tracking.
 
 ### Auto-submit + Score Calculation
 
-Results are displayed at the end with correct/incorrect tracking.
+At the end, the system displays:
+
+* Total correct answers
+* Completion message
 
 ### CSV Download
 
-The quiz automatically generates a downloadable **CSV report** showing:
+Generates a downloadable report containing:
 
 * Each question
 * The user’s answer
 * The correct answer
-* Pass/Fail per question
+* Pass/Fail for each item
 * Total score
+
+### HTML Report
+
+A clean, formatted HTML table version of the results.
 
 ### One Attempt Only
 
-Restart is removed. User can only submit once.
+Restart functionality is removed — each user only gets one attempt.
 
 ---
 
@@ -70,67 +97,95 @@ Open:
 js/script.js
 ```
 
-Find the section:
+Find:
 
 ```js
 // QUESTIONS (INSERT YOUR 25 QUESTIONS HERE)
 const questions = [
   ["Question", "Option A", "Option B", "Option C", "Option D", "Correct Letter"],
-  ...
 ];
 ```
 
-Replace the entries with your own 25-question array.
+Replace with your custom questions.
+
+---
+
+## How the Quiz Logic Works (Important)
+
+* The quiz starts with a **20-minute global timer**
+* Each question gets **45 seconds**
+* If user selects an answer:
+
+  * It locks
+  * Previous button hides
+  * Next button appears
+  * User must press **Next** manually
+* If **unanswered**, the question does NOT lock — only the timer can lock it
+* If time expires:
+
+  * Question locks
+  * Navigation backward is disabled
+  * Quiz automatically moves forward
+
+This ensures fairness, prevents reviewing previous answers, and keeps timing strict.
 
 ---
 
 ## How to Run the Project
 
 No installations required.
-Just open **index.html** in any browser.
+Simply open **index.html** in any browser.
 
-If hosted online, simply upload the three files/folders:
+To host online, upload:
 
 * `index.html`
-* `css/`
-* `js/`
+* `css/` folder
+* `js/` folder
 
 ---
 
 ## Requirements
 
-* Works in any modern browser
+* Runs on all modern browsers
 * No backend required
-* Optional: Google Apps Script endpoint for sending results (if configured)
+* Optional: connect Google Sheets or Firebase to store results
 
 ---
 
-## Customization
+## Customization Options
 
-You can freely adjust:
+You can modify:
 
-* Colors in `styles.css`
-* Timer duration in `script.js`
+* Styles (`styles.css`)
+* Timer durations (`script.js`)
 * Number of questions
-* CSV output format
+* CSV fields
+* Report layout
 
-If you want Dark Mode, animations, or a redesigned UI, just ask.
+If you'd like:
+
+* Dark mode
+* Animated UI
+* Random question order
+* Category-based questions
+  Just ask!
 
 ---
 
 ## License
 
-This project is free to use and modify for training, educational, or assessment use.
+Free to use and modify for training, education, or assessments.
 
 ---
 
 ## Support
 
-If you need:
+If you want advanced features like:
 
-* A version with images
-* Randomized question order
-* Leaderboard system
-* Firebase / Google Sheets data storage
+* Leaderboards
+* Admin dashboard
+* Auto-emailing results
+* Timer presets
+* Multi-user sessions
 
-Just tell me — I can generate it instantly.
+Tell me — I can generate them instantly.

@@ -12,12 +12,30 @@
       font-size: 1.4rem;
       color: #011307;
       margin-bottom: 12px;
+      font-weight: 600;
     }
     #start-screen p {
       font-size: 0.9rem;
       color: #00272b;
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 12px;
+    }
+    #start-screen .instructions {
+      text-align: left;
+      background: #f6f9f7;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border-left: 4px solid #00272b;
+      margin: 12px 0 18px;
+    }
+    #start-screen ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+    #start-screen li {
+      margin-bottom: 6px;
     }
     #start-screen .btn {
       font-size: 0.95rem;
@@ -48,9 +66,28 @@
 
     <!-- START SCREEN -->
     <section id="start-screen" class="card center">
-      <h2>Welcome to the Kakuma Referees Laws of the Game Test!</h2>
-      <p>You have 25 questions to complete within 20 minutes.</p>
-      <p>Your results will be available for download after completion.</p>
+      <h2>Welcome to the Kakuma Referees Laws of the Game Test</h2>
+
+      <!-- Full Name Input -->
+    <div class="full-name-input" style="margin-bottom:12px;">
+        <label for="fullName" style="font-size:0.9rem; font-weight:600;">Full Name:</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" 
+            style="width:100%; padding:8px; font-size:0.85rem; border-radius:6px; border:1px solid #cbd5e1;">
+    </div>
+
+      <div class="instructions">
+        <p><strong>Please read the instructions carefully before you begin:</strong></p>
+        <ul>
+          <li>You have <strong>25 questions</strong> to complete within <strong>20 minutes</strong>.</li>
+          <li>Each question has a <strong>45-second timer</strong>.</li>
+          <li>You can only move to the next question after selecting an answer.</li>
+          <li>Once you answer and press <strong>Next</strong>, you <strong>cannot go back</strong>.</li>
+          <li>If you do not answer within 45 seconds, the system will lock the question and move forward.</li>
+          <li>All questions are automatically submitted at the end of the countdown.</li>
+          <li>Your results will be available for download after completing the test.</li>
+        </ul>
+      </div>
+
       <button id="startBtn" class="btn primary">Start Test</button>
     </section>
 
@@ -68,6 +105,7 @@
       </div>
 
       <div id="questionBox" class="question-box"></div>
+      <div id="questionTimer" class="question-timer"></div>
 
       <div class="actions">
         <button id="prevBtn" class="btn">Previous</button>

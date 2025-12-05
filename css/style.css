@@ -111,6 +111,14 @@ h1{
   color: var(--gunmetal);
 }
 
+.question-timer {
+    font-size: 12px;
+    font-weight: bold;
+    color: #c30000;
+    margin-bottom: 10px;
+    padding-top: 1.0rem;
+  }
+  
 /* CHOICES */
 .choices{
   display: flex;
