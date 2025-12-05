@@ -26,7 +26,7 @@ const questions = [
 
   // 3
   [
-    "A defender takes a direct free kick back to the goalkeeper. The goalkeeper misses the ball and it enters the goal. What is the correct decision?",
+    "A defender takes a direct free kick and passes the ball back to a goalkeeper. The goalkeeper fails to kick the ball and does not touch it. After that, the ball enters the goal. What is the correct decision?",
     "Referee awards a goal",
     "Corner kick to the opponents",
     "The free kick is retaken",
@@ -36,7 +36,7 @@ const questions = [
 
   // 4
   [
-    "For what can allowance of time be made?",
+    "For what can allowance of time be made off? ",
     "Substitutions",
     "Assessment and removal of injured players",
     "Wasting of time",
@@ -56,17 +56,17 @@ const questions = [
 
   // 6
   [
-    "Before halftime a goal is scored but AR reports deliberate handball by attacker. Referee had not restarted. Decision?",
-    "Disallow goal and halftime",
-    "Disallow goal + yellow card + halftime",
-    "Disallow goal + red card + halftime",
-    "Allow the goal",
+    "Right before halftime a player scores. The referee doesn’t restart with a kick-    off, but whistles for the end of the half. While everyone is still on the field of play, the AR informs the referee that the ball was scored with a deliberate handball by     the attacker in an attempt to score. What does the referee decide?",    
+    "He disallows the goal and goes to the dressing room for halftime",
+    "He disallows the goal, shows the offender a yellow card and goes to the dressing room for halftime",
+    "He disallows the goal, shows the offender a red card and goes to the dressing room for halftime",
+    "He allows the goal, as he already whistle for halftime",
     "B"
   ],
 
   // 7
   [
-    "A player loses a shoe while dribbling but scores with one shoe on. Restart?",
+    "A Mathare United player is dribbling the ball towards Nairobi City's goal. Suddenly, his shoe accidentally falls off. With only one shoe on, he decides to take a shot and he scores a goal. The referee should use what method of restarting play?",
     "Dropped ball",
     "Kick-off",
     "Indirect free kick",
@@ -86,21 +86,21 @@ const questions = [
 
   // 9
   [
-    "Penalty shoot-out: kicker feints after run-up and goalkeeper moves off line. Decision?",
-    "Kicker cautioned, IFK",
-    "Both cautioned, kick retaken",
-    "Keeper warned only, kick retaken",
-    "Kick missed + kicker cautioned",
+    "During penalty shoot-out, after completing the run-up, the kicker feints to kick the ball and, at the same time, the goalkeeper moves off the goal line with both feet. What is the referee’s decision?",
+    "The kicker is cautioned and indirect free kick awarded.",
+    "Both the kicker and the goalkeeper are cautioned and the kick retaken",
+    "The Goalkeeper is given a warning and the kick retaken. If he/she repeats the     same, the goalkeeper gets sent off (red card),",
+    "The kick is recorded as missed and the kicker is cautioned (yellow card)",
     "B"
   ],
 
   // 10
   [
-    "Throw-in hits the referee and goes out without touching anyone else. Restart?",
-    "Dropped ball to opponents",
-    "Throw-in/corner/goal-kick to opponents depending on where it left",
-    "Goal kick to opponents",
-    "Throw-in to opponents",
+    " A player (Team A) takes the throw-in. After the ball is in play, it hits the referee and leaves the field of play without touching any other player. How is play  restarted?",
+    "A dropped ball is awarded to the opponents.",
+    "The referee will award a throw-in/corner kick/goal kick to the opponents (Team B),",
+    "A goal kick is awarded to the opponents",
+    "A throw-in is awarded to the opponents",
     "B"
   ],
 
@@ -116,39 +116,39 @@ const questions = [
 
   // 12
   [
-    "May referee allow a kick-off after a goal if some scorers are off celebrating?",
-    "No, all players must be in own half",
-    "Yes, as long as the team taking the kick-off is in its own half",
-    "No, even the taker must be fully in own half",
-    "Yes, except scoring team players",
+    "May the referee allow a kick-off after a goal was scored when players of the scoring team are off the field celebrating?",
+    "No. For every kick-off all players, except the player taking the kick-off, must be in their own half of the field of play.",
+    "Yes so long as the players of the team taking the kick-off are in their own half of the field of play.",
+    "No. for every kick-off all players including the player taking the kick-off, must be in their own half of the field of play.",
+    "Yes. For every kick-off all players, except the players of the scoring team, must be in their own half of the field of play but.",
     "B"
   ],
 
   // 13
   [
-    "A substitute strikes a substitute from same team outside field. Restart?",
-    "Direct free kick",
-    "Direct free kick if no advantage",
+    "While the ball is in play, a substitute strikes a substitute from the same team outside field of play. How is play restarted?",
+    "If advantage cannot be played, restart with a direct free kick on the boundary line nearest to where the offence occurred.",
+    "It is a dropped ball. A free kick can only be given if such an offence is committed by a player against an opposing player or a match official.",
     "Dropped ball (not a FK offence as not vs opponent/official)",
-    "Indirect free kick",
+    "Indirect free kick on the boundary line nearest to where the offence occurred.",
     "C"
   ],
 
   // 14
   [
-    "From a dropped ball at centre, a player dribbles and scores without anyone else touching. Decision?",
-    "Allow goal",
-    "Disallow – if 2 players didn’t touch – restart goal kick or corner",
-    "Disallow – retake dropped ball",
-    "Disallow – caution + goal kick or corner",
+    "From a dropped ball at the center circle, a player dribbles the ball past opponents and scores a goal. What will be the referee’s decision?",
+    "Allow the goal since the player touched the ball several times from a long distance and scored.",
+    "Disallow the goal if the ball didn’t touch at least two players. Play is restarted with a goal kick or a corner kick.",
+    "Disallow the goal if the ball didn’t touch at least two players. Retake the dropped ball.",
+    "Disallow the goal if the ball didn’t touch at least two players. Caution the player and play is restarted with a goal kick or a corner kick.",
     "C"
   ],
 
   // 15
   [
-    "How many types of punishments exist in football?",
+    "How many types of punishments do we have in the game of soccer.",
     "Two: penalty kick and cards",
-    "Two: team FK/PK + individual YC/RC",
+    "Two: team free kick or a penalty kick and individual yellow and red card.",
     "Two: yellow and red card",
     "Three: free kick, yellow card and red card",
     "B"
@@ -156,88 +156,88 @@ const questions = [
 
   // 16
   [
-    "Player commits cautionable offence during warm-up. Procedure?",
-    "Ref cautions + reports incident",
-    "Ref cannot caution before entering field",
-    "Ref cautions but no need to report",
-    "None correct",
+    "The referee notices that a player is committing a cautionable (yellow card) offence on the field of play during the warm-up before the kick-off. What is the correct procedure?",
+    "The referee cautions, or shows a yellow card to the offending player, as the referee has authority before entering the field of play at the start of the match. The incident is reported to the appropriate disciplinary authorities.",
+    "The referee cannot caution, or show a yellow to the offending player, as the offence has occurred before the referee has entered the field of play at the start of the match. The incident is reported to the appropriate disciplinary authorities.",
+    "The referee cautions, or shows a yellow card to the offending player, as the referee has authority before entering the field of play at the start of the match. No need to report the incident.",
+    "None of the answers above is correct.",
     "A"
   ],
 
   // 17
   [
-    "Player re-enters field without permission after fixing equipment. Sanction and restart?",
-    "Caution if play stopped to issue card",
-    "DFK/PK if interference occurred",
-    "IFK if no interference",
+    "A player had left the field of play to correct or change equipment and then. returned during play without the referee’s permission. What are the sanction and restart?",
+    "A player must be cautioned (yellow card, YC). If play was stopped to issue the YC, it will be restarted with:",
+    "A direct free kick (or penalty kick) – from the position of interference, or",
+    "An indirect free kick – from the position of the ball when play was stopped (if there was no interference)",
     "All of the above",
     "D"
   ],
 
   // 18
   [
-    "A dog stops a goal on the line but does not prevent a defender from playing the ball. Decision?",
-    "Allow goal",
-    "Dropped ball to goalkeeper",
-    "Dropped ball to any defender",
+    "A dog enters the field of play during the match and prevents a goal being. scored by stopping the ball on the goal line. The dog’s interference does not prevent any defending player from playing the ball. What is the referee’s decision?",
+    "The referee allows the goal since the dog doesn’t prevent any defending player from playing the ball.",
+    "The referee stops play and restarts with a dropped ball for the defending team goalkeeper in their penalty area.",
+    "The dog is an ‘outside agent’ so the referee stops play and restarts with a dropped ball for any defending team player in the field of play.",
     "B and C could be correct",
     "D"
   ],
 
   // 19
   [
-    "Players switch shirts with GK at halftime without permission. Ref notices after restart. Decision?",
-    "Allow play, no caution, report later",
-    "Stop play, caution both, IFK",
-    "Allow play, caution both at next stoppage and report",
-    "None correct",
+    "After the second half has started, the referee notices that during half-time a player changed places and shirts with the goalkeeper without the referee’s permission. What is the referee’s decision?",
+    "The referee allows play to continue. Both players are not cautioned (yellow cards are not issued). The matter is reported after the match to the appropriate authorities.",
+    "The referee stops play. Cautions both players and restart play with an indirect free kick where the ball was.",
+    "The referee allows play but caution both players during the next stoppage and restart play accordingly. The matter is reported after the match to the appropriate authorities.",
+    "None of the answers above is correct.",
     "C"
   ],
 
   // 20
   [
-    "How many types of free kicks exist?",
-    "Two: direct and indirect",
-    "Three: direct, indirect, penalty",
-    "Four: direct, indirect, corner, penalty",
-    "All are correct",
+    "How many types of free kicks do we have?",
+    "Two: direct free kick and indirect free kick",
+    "Three: direct free kick, indirect free kick and penalty kick",
+    "Four: direct free kick, indirect indirect free kick, corner kick and penalty kick",
+    "All of the above are correct",
     "A"
   ],
 
   // 21
   [
-    "A substitute warming up stops a ball on the goal line preventing a goal. Decision?",
-    "DFK/PK from position of interference",
-    "Substitute cautioned",
-    "Possible red card for DOGSO",
-    "DFK/PK + caution to substitute",
+    "In this situation, where a striker shoots the ball towards the goal and it travels along the goal line within penalty area, but a substitute who was warming up stops the ball with his foot before it crosses the line, the correct decision for the referee to make is:",
+    "Award a direct free kick or a penalty kick to the opposing team from the position where the substitute interfered with play.",
+    "The substitute should be cautioned (yellow card) for unsporting behavior.",
+    "If the interference prevented a clear goal-scoring opportunity, the referee may consider sending off (red card) the substitute for denying an obvious goal-scoring opportunity.",
+    "Award a direct free kick or a penalty kick to the opposing team from the position where the substitute interfered with play and caution the substitute.",
     "D"
   ],
 
   // 22
   [
-    "GK flicks ball up on free kick, teammate chests back to GK to catch. Decision?",
-    "Penalty + YC GK",
-    "IFK + YC GK",
-    "IFK + YC teammate",
+    "At a free kick the goalkeeper flicks the ball up using his/her foot and a teammate chests the ball back to the goalkeeper to catch in their own penalty area. What is the referee's decision? 1 point",
+    "Penalty kick and yellow card to the goalkeeper",
+    "Indirect free kick and yellow card to the goalkeeper",
+    "Indirect free kick and yellow card to the teammate of the goalkeeper",
     "Play on",
     "C"
   ],
 
   // 23
   [
-    "Player removes corner flagpost because wind is shaking it. Decision?",
-    "Allow the corner",
-    "Allow if player replaces flag after kick",
-    "Allow then ask AR to fix it",
-    "Do not allow – flag must not be moved",
+    "A player wants to take a corner kick, but the flag post is moving a lot due to the wind. The player takes out the flag post. What does the referee decide?",
+    "He allows the corner kick to be taken",
+    "He allows the corner kick to be taken only if the player tells him he will move the flag post back immediately after taking the kick",
+    "He allows the corner kick to be taken and commands his assistant referee to move back the flagpost afterwards",
+    "He does not allow the corner kick to be taken, because the corner flagpost must not be moved",
     "D"
   ],
 
   // 24
   [
-    "Referee checks what when inspecting the ball?",
-    "That it meets Law 2 requirements",
+    "What does the Referee check for when inspecting the ball?",
+    "That it meets all the requirements of Law 2,",
     "If the ball is spherical",
     "Weight and circumference",
     "Pressure",
@@ -246,14 +246,11 @@ const questions = [
 
   // 25
   [
-    "Name Laws 1 to 8 in correct order:",
-    "The Field of Play",
-    "The Ball",
-    "The Players",
-    "The Players’ Equipment, The Referee, The Other Match Officials, The Duration of the Match, The Start and Restart of Play",
-    "The Field of Play only",
-    "A" // You can update this based on how you want Q25 graded
+    "Name laws of the game in order from law 1 to 8…",
+    "", "", "", "",  
+    "TEXT" // use TEXT instead of A/B/C/D
   ]
+  
 
 ];
 
@@ -346,63 +343,110 @@ function updateTimeDisplay() {
 // RENDER QUESTION
 // -------------------------------------------------
 function renderQuestion() {
-  const q = questions[pos];
-
-  progressEl.textContent = `Question ${pos + 1} of ${questions.length}`;
-
-  let html = `<h3>${q[0]}</h3><div class="choices">`;
-  const labels = ["A", "B", "C", "D"];
-  const saved = answers[pos]?.selected || null;
-
-  for (let i = 1; i <= 4; i++) {
-    const letter = labels[i - 1];
-    html += `
-      <label class="choice ${saved === letter ? "selected" : ""}">
-        <input type="radio" name="choices" value="${letter}" ${saved === letter ? "checked" : ""}>
-        <span>${letter}. ${q[i]}</span>
-      </label>
-    `;
-  }
-
-  html += `</div>`;
-  questionBox.innerHTML = html;
-
-  questionBox.querySelectorAll(".choice").forEach(c => {
-    c.addEventListener("click", () => {
-      questionBox.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
-      c.classList.add("selected");
-      c.querySelector("input").checked = true;
+    const q = questions[pos];
+    const correct = q[5]; // either A/B/C/D or TEXT
+  
+    progressEl.textContent = `Question ${pos + 1} of ${questions.length}`;
+  
+    let html = `<h3>${q[0]}</h3>`;
+  
+    // ---------------------------
+    // TEXT INPUT QUESTION (Q25)
+    // ---------------------------
+    if (correct === "TEXT") {
+      const savedText = answers[pos]?.text || "";
+  
+      html += `
+        <textarea id="textAnswer" placeholder="Enter all 8 laws in order..."
+          style="width:100%; height:160px; font-size:15px; padding:10px;">${savedText}</textarea>
+      `;
+  
+      questionBox.innerHTML = html;
+      updateNavButtons();
+      return;
+    }
+  
+    // ---------------------------
+    // MULTIPLE CHOICE QUESTIONS
+    // ---------------------------
+    html += `<div class="choices">`;
+    const labels = ["A", "B", "C", "D"];
+    const saved = answers[pos]?.selected || null;
+  
+    for (let i = 1; i <= 4; i++) {
+      const letter = labels[i - 1];
+      html += `
+        <label class="choice ${saved === letter ? "selected" : ""}">
+          <input type="radio" name="choices" value="${letter}" ${saved === letter ? "checked" : ""}>
+          <span>${letter}. ${q[i]}</span>
+        </label>
+      `;
+    }
+  
+    html += `</div>`;
+    questionBox.innerHTML = html;
+  
+    questionBox.querySelectorAll(".choice").forEach(c => {
+      c.addEventListener("click", () => {
+        questionBox.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+        c.classList.add("selected");
+        c.querySelector("input").checked = true;
+      });
     });
-  });
-
-  updateNavButtons();
-}
+  
+    updateNavButtons();
+  }
+  
 
 
 // -------------------------------------------------
 // SAVE CURRENT ANSWER
 // -------------------------------------------------
 function saveCurrentAnswer() {
-  const radios = document.getElementsByName("choices");
-  let selected = null;
-
-  for (const r of radios) {
-    if (r.checked) selected = r.value;
+    const q = questions[pos];
+    const correct = q[5];
+  
+    // -------------------------
+    // TEXT ANSWER (Q25)
+    // -------------------------
+    if (correct === "TEXT") {
+      const txt = document.getElementById("textAnswer")?.value || "";
+  
+      answers[pos] = {
+        question: q[0],
+        text: txt,
+        selected: txt,
+        correctAnswer: "TEXT",
+        passed: txt.trim().length > 0 // mark as passed if they filled something
+      };
+  
+      return;
+    }
+  
+    // -------------------------
+    // MULTIPLE CHOICE ANSWER
+    // -------------------------
+    const radios = document.getElementsByName("choices");
+    let selected = null;
+  
+    for (const r of radios) {
+      if (r.checked) selected = r.value;
+    }
+  
+    answers[pos] = {
+      question: q[0],
+      options: {
+        A: q[1],
+        B: q[2],
+        C: q[3],
+        D: q[4]
+      },
+      selected: selected,
+      correctAnswer: correct,
+      passed: selected === correct
+    };
   }
-
-  answers[pos] = {
-    question: questions[pos][0],
-    options: {
-      A: questions[pos][1],
-      B: questions[pos][2],
-      C: questions[pos][3],
-      D: questions[pos][4]
-    },
-    selected: selected,
-    correctAnswer: questions[pos][5],
-    passed: selected === questions[pos][5]
-  };
-}
+  
 
 
 // -------------------------------------------------
